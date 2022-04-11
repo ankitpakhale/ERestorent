@@ -1,0 +1,36 @@
+<div class="container">
+    <br><br><br><br><br>
+    <div class="card bg-info text-white">
+        <div class="card-header text-white">
+            Account list for verification
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered text-white">
+                <thead>
+                    <tr>
+
+                        <th>Usereamil</th>
+                        <th>Table_no</th>
+                        <th>Date</th>
+                        <th>time</th>
+                        <th>Booking Status</th>
+                        
+                        <th>View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in z%}
+                    <tr>
+
+                        <td>{{i.usereamil}}</td>
+                        <td>{{i.table_no}}</td>
+                        <td>{{i.date}}</td>
+                        <td>{{i.time1}}</td>
+                        <td>{{i.booked}}</td>
+                        <td><a href="{% url 'edit' i.id %}"><button type="button"
+                                    class="btn btn-warning">Info</button></a></td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>

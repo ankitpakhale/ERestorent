@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image:url({% static 'images/bg_1.jpg' %});">
+        <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-12 ftco-animate text-center">
+            <div class="text mb-5 pb-3">
+              <h1 class="mb-3">Welcome To Deluxe</h1>
+              <h2>Hotels</h2>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="slider-item" style="background-image:url({% static 'images/bg_2.jpg' %});">
+        <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+        <div class="col-md-12 ftco-animate text-center">
+            <div class="text mb-5 pb-3">
+              <h1 class="mb-3">Enjoy A Luxury Experience</h1>
+              <h2>Join With Us</h2>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+</section><br>
+<center><h2 style="font-weight:bold;">BOOKING TABLE </h2></center><hr>
+<form method="POST">
+  {% csrf_token %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h3 style="margin-top: 30px;">Order_By :{{user.email}}
+    <div class="col-md-6">
+      <h3 style="margin-top: 30px;">Table No:{{ table }}</h3>
+      </select>
+      </h3>
+      <h3 style="margin-top: 30px;">Booking Date:
+        <input type="date" name="date" id="date">
+      </h3>
+      <h3 style="margin-top: 30px;">Booking Time:
+        <input type="time" name="time1" id="time1">
+      </h3>
+    </div>
+  </div>
+</div>
+<center>
+  <button style="margin-top: 30px;" type="submit">Book Now</button>
+</center>
+</form>
+
+  <section class="ftco-section contact-section bg-light">
+      <div>
+        <center>
+          <h2>
+            {% if messages %}
+        {% for message in messages %}
+              {{ message }}
+        {% endfor %}
+    {% endif %}
+          
+          
+          </h2>
+        </center>
+        </div>
+    <div class="row block-9">
+        <div class="col-md-6 order-md-last d-flex">
+
+        </div>
+    </div>
+  </section>
+{% endblock %}

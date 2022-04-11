@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<title>orders</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'table.css' %}">
+<body>
+    {% if data %}
+
+<div class="w3-container">
+  <h2> Your Orders {{ User }}</h2>
+  {% for d in data %}
+  <ul class="w3-ul w3-card-4">
+    <li class="w3-bar">
+      <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right"><a href="{% url 'cart_remove' d.id %}">×</a></span>
+     
+      <div class="w3-bar-item">
+        <span class="w3-large">{{d.meal_name}}</span><br>
+        <span> of Quantity : {{d.meal_qty}}</span><br>
+        <span> at Price :{{d.meal_price}}</span>
+        
+      </div>
+    </li>
+  </ul>
+  {% endfor %}
+</div>
+
+<center>
+<br>
+<div>
+    Your Payable Bill = {{ total }}
+</div>
+
+<td>
+    <div class="col-md-12 room-single ftco-animate mb-5 mt-5">
+        <h4 class="mb-4">
+          <a href="{% url 'emailcall' %}">Order Now</a>
+    </div>
+</td>
+</center>
+
+{% else %}
+    <h1> Please Place Order </h1>
+{% endif %}
+<br>
+<a href="{% url 'index' %}">Add New Items</a>
+<br>
+
+</body>
+</html>

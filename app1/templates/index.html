@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <section class="home-slider owl-carousel">
+      <div class="slider-item" style="background-image:url({% static 'images/1.png' %});">
+      	<div class="overlay"></div>
+        <div class="container">
+          <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-12 ftco-animate text-center">
+          	<div class="text mb-5 pb-3">
+	            <h1 class="mb-3">Welcome To E-Restaurant</h1>
+	            <h2>Meals</h2>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+     
+    </section>
+
+    <section class="ftco-booking">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-lg-12">
+					<form method="POST" action="{% url 'checkavailability' %}" enctype="multipart/form-data" class="booking-form">
+					{% csrf_token %}
+	        		<div class="row">
+	        			<div class="col-md-12 d-flex">
+	        				<div class="form-group p-3 align-self-stretch d-flex align-items-end">
+	        					<div class="wrap">
+				    					<label for="#">Search Food</label>
+				    					<input type="text" name="foodname" class="form-control" placeholder="Food avaibility" value="{% if mealcheck %} {{ mealcheck.strip }} {% endif %}">
+			    				</div>
+			    			</div>
+						</div>
+
+					</div>
+		
+	        		<div class="col-md-2 d-flex">
+						<div class="form-group d-flex align-self-stretch" style="margin-left: 450px; border-radius: 20px; margin-top:20px; text-align:center;">
+							<input type="submit" style="border-radius: 20px;" value="Check Availability" class="btn btn-primary py-3  align-self-stretch">
+						</div>	
+	        		</div>
+	        	</div>
+	        	</form>
+	    		</div>
+    		</div>
+    	</div>
+	</section>
+		<!-- slider_area_start -->
+
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="section_title text-center mb-80">
+				<span>Fresh,Delicious meal to reach your optimum health and fitness </span>
+			
+			</div>
+		</div>
+	</div>
+		<!-- veg non-veg category -->
+	<div class="Burger_President_area">
+		<div class="Burger_President_here">
+			<div class="single_Burger_President">
+				<div class="room_thumb">
+					<img src="{% static 'images/veg1.jpeg' %}" alt="">
+					<div class="room_heading d-flex justify-content-between align-items-center">
+						<div class="room_heading_inner">
+							
+							<h3>Vegetranian Food</h3>
+							
+							<a href="{% url 'meal' 'vage' %}" class="boxed-btn3">Click Here</a>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="single_Burger_President">
+				<div class="room_thumb">
+					<img src="{% static 'images/nonveg.png' %}" alt="">
+					<div class="room_heading d-flex justify-content-between align-items-center">
+						<div class="room_heading_inner">
+							
+							<h3>Non-Vegetarian Food</h3>
+						
+							<a href="{% url 'meal' 'nonvage' %}" class="boxed-btn3">Click Here</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- veg non-veg category -->
+
+    {% if meal %}
+    
+	<section class="ftco-section bg-light">
+			
+		<div class="container">
+			<h2>{{ foodcount }} Meals Found</h2>
+			<div class="row">
+			<div class="col-lg-9">
+					<div class="row">
+						{% for r in meal %}
+					
+						<div class="col-sm col-md-6 col-lg-4 ftco-animate">
+							<div class="room">
+								<a href="{% url 'meal' ' ' %}" class="img d-flex justify-content-center align-items-center" style="background-image: url({{ r.image.url }})">
+									<div class="icon d-flex justify-content-center align-items-center">
+										<span class="icon-search2"></span>
+									</div>
+								</a>
+								<div class="text p-3 text-center">
+									<h3 class="mb-3"><a href="{% url "meal_view" r.id %}">{{ r.name }} </a></h3>
+									<p><span class="price mr-2"><i class="fa fa-inr" aria-hidden="true"></i>
+										{{ r.price }}</span></p>
+									<ul class="list">
+										<li><span>quantity:</span> {{ r.quantity }}</li>
+										
+										<li><span>Read More:</span><a href="{% url "meal_view" r.id %}"> Click Here</a></li>
+										
+
+									</ul>
+									<hr>
+									
+									<!-- <p class="pt-1"><a href="https://p-y.tm/1Y-p98Y" class="btn-custom">Book Now <span class="icon-long-arrow-right"></span></a></p> -->
+								</div>
+								
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+
+			</div>
+			</div>
+		</div>
+	</section>
+
+	{% elif meal != None %}
+
+	<section class="ftco-section bg-light">
+		<div class="container">
+			<div class="row">
+			<div class="col-lg-9">
+					<div class="row">
+						<div class="col-sm col-md-6 col-lg-4 ftco-animate">
+							<div class="room">
+								<h3>Record not found!!!</h3>	
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			</div>
+		</div>
+	</section>
+
+  {% else %}
+
+	
+    <section class="ftco-section bg-light">
+    	<div class="container">
+				<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h2 class="mb-4">Our Meals</h2>
+          </div>
+		</div>    
+		
+		<div class="row">
+
+						
+			{% for r in data %}
+		
+			<div class="col-sm col-md-6 col-lg-4 ftco-animate">
+				<div class="room">
+					<a href="#" class="img d-flex justify-content-center align-items-center" style="background-image: url({{ r.image.url }})">
+						<div class="icon d-flex justify-content-center align-items-center">
+							<span class="icon-search2"></span>
+						</div>
+					</a>
+					<div class="text p-3 text-center">
+						<h3 class="mb-3"><a href="{% url 'meal_view' r.id %}">{{ r.name }}</a></h3>
+						<p><span class="price mr-2"><i class="fa fa-inr" aria-hidden="true"></i>
+							{{ r.price }}</span></p>
+						<ul class="list">
+
+							<li><span>it's a: </span>{{ r.main_category }}</li>
+							<li><span>Read More:</span><a href="{% url 'meal_view' r.id %}"> Click Here</a></li>
+							<li><span>type:</span>{{ r.category }}</li>
+
+						</ul>
+						<hr>
+						
+	
+						<!-- <p class="pt-1"><a href="https://p-y.tm/1Y-p98Y" class="btn-custom">Book Now <span class="icon-long-arrow-right"></span></a></p> -->
+					</div>
+
+				</div>
+			</div>
+			{% endfor %}
+			
+		</div>
+
+		
+    		
+    	</div>
+    </section>
+
+	{% endif %}
+	  <!-- video_area_start -->
+	  <div class="video_area video_bg overlay">
+        <div class="video_area_inner text-center">
+			<h3>	Lets </h3><br><h3>Celebrate</h3> 
+		
+            <span>	We are a modern restaurant in the center of the city</span>
+
+        </div>
+    </div>
+	<!-- video_area_end -->
+
+			<!-- end categories -->
+	
+
+{% endblock %}    

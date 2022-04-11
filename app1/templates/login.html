@@ -1,0 +1,10 @@
+<html>
+    <body>
+            <form  method="POST">
+                    {% csrf_token %}
+                            <input type="text" class="form-control" placeholder="User Name" name="username" autofocus value="{{ form.username }}">
+                            <input type="password" class="form-control" placeholder="Password" name="password" value="{{ form.password }}"></br>
+                        <button  type="submit">Sign in</button>
+            </form>
+    </body>
+</html>

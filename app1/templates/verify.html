@@ -1,0 +1,32 @@
+{% load static %}
+
+    <html>
+    <head>
+        <title>Login Page</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}">
+    </head>
+    <body>
+        <br>	
+            <div style="font-size: 40px; color:brown">
+                    <center>
+                    <h1>Welcome To E-Restorent</h1>
+                </center>
+                </div>
+        <div class="loginBox">
+            <img src="{% static 'images/user1.png' %}" class="user">
+            <h2 style="color:lightsteelblue">Verification For Reset Password</h2>
+            <form method="POST">{% csrf_token %}
+                    <p>Email id:</p>
+                    <input type="email" name="email">
+                    <p>Mobile Number:</p>
+                    <input type="tel" pattern="^\d{10}$" name="m_no" ><br>
+                    {% for message in messages %}
+                        {% if message.tags %}
+                            {{ message }}
+                        {% endif %}
+                    {% endfor %}
+                    <input type="submit" value="Submit">
+                </form>
+        </div>
+    </body>
+    </html>

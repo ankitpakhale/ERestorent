@@ -1,0 +1,30 @@
+{% load static %}
+
+<html>
+<head>
+	<title>Login Page</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}">
+</head>
+<body>
+	<br>	
+		<div style="font-size: 40px; color:brown">
+				<center>
+				<h1>Welcome To E-Restorent</h1>
+			</center>
+			</div>
+	<div class="loginBox">
+		<img src="{% static 'images/user1.png' %}" class="user">
+		<h2>Login Here</h2>
+		<form method="POST" enctype="multipart/form-data">
+      	{% csrf_token %}
+			<p>Username</p>
+			<input type="email" name="email">
+			<p>Password</p>
+			<input type="password" name="password">
+			<input type="submit" value="Sign In">
+			<a href="{% url 'register' %}"><p style="text-align: center">Create New Account</p></a><br>
+			<a href="{% url 'verify' %}"><p style="text-align: center">Forget Password</p></a><br>
+		</form>
+	</div>
+</body>
+</html>

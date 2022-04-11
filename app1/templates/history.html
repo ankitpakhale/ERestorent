@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <h2>All booking Data</h2>
+    </head>
+    <body>
+        <p>User Name:{{ mod }}</p>
+        <table>
+            <thead>
+                <th>{{Table_No}}</th>
+                <th>{{Booking_Date}}</th>
+                <th>{{Booking_Time}}</th>
+            </thead>
+            <tbody>
+                {% for i in table %}
+                <tr>
+                    <td>{{ i.table_no  }}</td>
+                    <td>{{ i.date  }}</td>
+                    <td>{{ i.time1  }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signup Page</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+</head>
+<body>
+	<div style="font-size: 40px; color:brown">
+		<center>
+		<h1>Welcome To E-Restorent</h1>
+	</center>
+	</div>
+	<div class="signupBox">
+		<img src="{% static 'images/user1.png' %}" class="user">
+		<h2>Admin SignUp </h2>
+		<form method="POST">
+      		{% csrf_token %}
+      		<p>Username</p>
+			<input type="text" name="name" id="name" placeholder="Enter your name">
+			<p>Email</p>
+			<input type="email" name="email" id="email" placeholder="Enter your email">
+			<p>Birth Date</p>
+
+			<input type="date" name="dob" id='dob' placeholder="Enter your date of birth">
+			<p>Mobile No.</p>
+
+			<input type="tel" pattern="^\d{10}$" name="mobile_no" id="m_no" placeholder="Mobile Number">
+			<p>Password</p>
+            <input type="password" name="password" id="password" placeholder="Enter the password">
+			<input type="submit" value="Sign Up">
+		</form>
+		<a href="{% url 'login' %}"><p style="text-align: center">Login</p></a><br>
+		<a href="{% url 'register' %}"><p style="text-align: center">Reset</p></a><br>
+	</div>
+</body>
+</html>	
