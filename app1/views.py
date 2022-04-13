@@ -339,7 +339,10 @@ def show_all(request):
     if 'email' in request.session:
         data=TableDetail.objects.all()
         return render(request,'alltable.html',{'data':data})
-    return redirect('login')
+    # return redirect('login')
+    else:
+        data=TableDetail.objects.all()
+        return render(request,'alltable.html',{'data':data})
 
 def alltablebook(request):
     if 'email' in  request.session:   
