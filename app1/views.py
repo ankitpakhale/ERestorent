@@ -26,7 +26,6 @@ import email.message
 #time
 import time
 from datetime import datetime, timezone
-import pytz
 
 
 def index(request):
@@ -340,9 +339,7 @@ def show_all(request):
     if 'email' in request.session:
         data=TableDetail.objects.all()
         return render(request,'alltable.html',{'data':data})
-    else:
-        data=TableDetail.objects.all()
-        return render(request,'alltable.html',{'data':data})
+    return redirect('login')
 
 def alltablebook(request):
     if 'email' in  request.session:   
