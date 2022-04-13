@@ -344,6 +344,7 @@ def show_all(request):
         data=TableDetail.objects.all()
         return render(request,'alltable.html',{'data':data})
 
+
 def alltablebook(request):
     if 'email' in  request.session:   
         all=TableBooking.objects.all()
