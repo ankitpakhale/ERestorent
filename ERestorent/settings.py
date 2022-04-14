@@ -12,9 +12,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '^=blt$yi4a4@kkl6$tg9*eqgo#8tz97qd14pog46x@f^#cxzfq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['erestorent.herokuapp.com']
+# ALLOWED_HOSTS = ['erestorent.herokuapp.com']
+ALLOWED_HOSTS = []
 
 REPORT_BUILDER_INCLUDE = []
 REPORT_BUILDER_EXCLUDE = ['app1.Orders']
@@ -37,7 +39,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
