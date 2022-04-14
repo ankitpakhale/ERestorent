@@ -188,7 +188,13 @@ def RegisterView(request):
                 msg = "Email already registered"
                 return render(request,'registration/register.html', {'msg':msg})
             elif request.POST['confirmPassword'] == request.POST['password']:
-                Site_User.objects.create(name = request.POST['name'], dob = request.POST['dob'], email = request.POST['email'], m_no =  request.POST['mobile_no'], password = request.POST['password'])
+                Site_User.objects.create(
+                    name = request.POST['name'], 
+                    email = request.POST['email'], 
+                    dob = request.POST['dob'], 
+                    m_no =  request.POST['mobile_no'], 
+                    password = request.POST['password']
+                )
                 print("Signed up successfully")
                 return redirect('login')
             else:

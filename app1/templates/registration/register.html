@@ -14,6 +14,7 @@
 		</center>
 	</div>
 	<div class="signupBox">
+		<!-- <img src="{% static 'images/user1.png' %}" class="user"> -->
 		<img src="{% static 'images/user1.png' %}" class="user">
 		<h2>SignUp Here</h2>
 		<form method="POST" enctype="multipart/form-data">
@@ -29,7 +30,7 @@
 			<input type="date" name="dob" id="num" class="form-control" placeholder="Date of Birth" required>
 
 
-			<input type="text" name="address" id="address" class="form-control" placeholder="Address" required>
+			<input type="number" name="mobile_no" id="mobile_no" class="form-control" placeholder="Mobile Number" required>
 
 
 			<input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
@@ -45,6 +46,10 @@
 		<a href="{% url 'login' %}">Login</a>
 
 	</div>
+    <!-- PRINTING BACKEND MESSAGES -->
+        {% if msg %}
+        <script>alert('{{msg}}')</script>
+        {% endif %}
 </body>
 
 </html>
