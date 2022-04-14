@@ -18,14 +18,13 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 import random
 import qrcode
-
 #email
 import smtplib
 import email.message
-
 #time
 import time
 from datetime import datetime, timezone
+
 
 
 def index(request):
@@ -38,6 +37,7 @@ def index(request):
     else:
         return redirect('login')
 
+    
 def palce_order(request,id):
     cart = Orders()
     user = Site_User.objects.get(email=request.session['user'])
