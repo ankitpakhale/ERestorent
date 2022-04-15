@@ -49,7 +49,7 @@ body{
   font-size: 16px;
   }
   
-  .signupBox input[type="text"], .signupBox input[type="tel"], .signupBox input[type="password"], .signupBox input[type="date"], .signupBox input[type="email"]{
+  .signupBox input[type="text"], .signupBox input[type="tel"], .signupBox input[type="password"], .signupBox input[type="date"], .signupBox input[type="email"], input[type="number"]{
     border: none;
     border-bottom: 1px solid #fff;
     background: transparent;
@@ -68,9 +68,11 @@ body{
     background: rgb(255,38,126);
     cursor: pointer;
     border-radius: 20px;
+    transition: all 0.3s ease;
   }
   
   .signupBox input[type="submit"]:hover{
+    transition: all 0.3s ease;
     background: #efed40;
     color: #262626;
   }

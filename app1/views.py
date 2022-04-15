@@ -174,13 +174,7 @@ def RegisterView01(request):
 # ----------------------------------------------------
 
 def RegisterView(request):
-    if request.POST: 
-        # name = request.POST['name']
-        # dob = request.POST['dob']
-        # email = request.POST['email']
-        # mobile_no = request.POST['mobile_no']
-        # Password = request.POST['password1']
-        # ConfirmPassword = request.POST['confirmPassword']
+    if request.POST:
         try:
             data = Site_User.objects.get(email=request.POST['email'])
             if data:
@@ -195,13 +189,11 @@ def RegisterView(request):
                     m_no =  request.POST['mobile_no'], 
                     password = request.POST['password']
                 )
-                # s.save()
                 print("Signed up successfully")
                 return redirect('login')
             else:
                 msg = 'Please Enter Same Password'
                 return render(request , 'registration/register.html',{'msg':msg})
-            
     return render(request,'registration/register.html')
 
 # ----------------------------------------------------
