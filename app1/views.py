@@ -18,13 +18,14 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 import random
 import qrcode
+
 #email
 import smtplib
 import email.message
+
 #time
 import time
 from datetime import datetime, timezone
-
 
 
 def index(request):
@@ -37,7 +38,6 @@ def index(request):
     else:
         return redirect('login')
 
-    
 def palce_order(request,id):
     cart = Orders()
     user = Site_User.objects.get(email=request.session['user'])
@@ -158,8 +158,7 @@ def contact(request):
     else:
         return redirect('login')
 
-# ----------------------------------------------------
-def RegisterView01(request):
+def RegisterView(request):
     reg = Form_Site_User(request.POST or None)
     if reg.is_valid():
         obj = Site_User()
@@ -171,40 +170,7 @@ def RegisterView01(request):
         obj.save()
         return redirect('login')
     return render(request,'registration/register.html',{'form':reg})
-# ----------------------------------------------------
 
-def RegisterView(request):
-    msg = ''
-    if request.POST: 
-        # name = request.POST['name']
-        # dob = request.POST['dob']
-        # email = request.POST['email']
-        # mobile_no = request.POST['mobile_no']
-        # Password = request.POST['password1']
-        # ConfirmPassword = request.POST['confirmPassword']
-        try:
-            data = Site_User.objects.filter(email=request.POST['email'])
-            if data:
-                msg = "Email already registered"
-                return render(request,'registration/register.html', {'msg':msg})
-            elif request.POST['confirmPassword'] == request.POST['password']:
-                Site_User.objects.create(
-                    name = request.POST['name'], 
-                    email = request.POST['email'], 
-                    dob = request.POST['dob'], 
-                    m_no =  request.POST['mobile_no'], 
-                    password = request.POST['password']
-                )
-                print("Signed up successfully")
-                return redirect('login')
-            else:
-                msg = 'Please Enter Same Password'
-                return render(request , 'registration/register.html',{'msg':msg}) 
-        finally:
-            msg = 'Signup Successfully Done...'
-    return render(request,'registration/register.html', {'msg':msg})
-
-# ----------------------------------------------------
 def LoginView(request):
     if request.POST:
         email = request.POST['email']
