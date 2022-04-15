@@ -174,7 +174,6 @@ def RegisterView01(request):
 # ----------------------------------------------------
 
 def RegisterView(request):
-    msg = ''
     if request.POST: 
         # name = request.POST['name']
         # dob = request.POST['dob']
@@ -183,11 +182,12 @@ def RegisterView(request):
         # Password = request.POST['password1']
         # ConfirmPassword = request.POST['confirmPassword']
         try:
-            data = Site_User.objects.filter(email=request.POST['email'])
+            data = Site_User.objects.get(email=request.POST['email'])
             if data:
                 msg = "Email already registered"
                 return render(request,'registration/register.html', {'msg':msg})
-            elif request.POST['confirmPassword'] == request.POST['password']:
+        except:
+            if request.POST['confirmPassword'] == request.POST['password']:
                 Site_User.objects.create(
                     name = request.POST['name'], 
                     email = request.POST['email'], 
@@ -195,14 +195,14 @@ def RegisterView(request):
                     m_no =  request.POST['mobile_no'], 
                     password = request.POST['password']
                 )
+                # s.save()
                 print("Signed up successfully")
                 return redirect('login')
             else:
                 msg = 'Please Enter Same Password'
-                return render(request , 'registration/register.html',{'msg':msg}) 
-        finally:
-            msg = 'Signup Successfully Done...'
-    return render(request,'registration/register.html', {'msg':msg})
+                return render(request , 'registration/register.html',{'msg':msg})
+            
+    return render(request,'registration/register.html')
 
 # ----------------------------------------------------
 def LoginView(request):
