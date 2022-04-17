@@ -1,24 +1,53 @@
-<html>
-    <head>
-        <h2>All booking Data</h2>
-    </head>
-    <body>
-        <p>User Name:{{ mod }}</p>
-        <table>
-            <thead>
-                <th>{{Table_No}}</th>
-                <th>{{Booking_Date}}</th>
-                <th>{{Booking_Time}}</th>
-            </thead>
-            <tbody>
-                {% for i in table %}
-                <tr>
-                    <td>{{ i.table_no  }}</td>
-                    <td>{{ i.date  }}</td>
-                    <td>{{ i.time1  }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="hero-wrap" style="background-image: url({% static 'images/menu-5.jpg' %});">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
+            <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+                <div class="text">
+                    <h1 class="mb-4 bread">All booking Data</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <!-- --------------------------------------------------------------------- -->
+                    <h3>Username: {{ mod }}</h3>
+                    <!-- --------------------------------------------------------------------- -->
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">{{Table_No}}</tr>
+                                    <th scope="col">{{Booking_Date}}</th>
+                                    <th scope="col">{{Booking_Time}}</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {% for i in table %}
+                            <tr>
+                                <th scope="row">{{ i.table_no }}</th>
+                                <td>{{ i.date }}</td>
+                                <td>{{ i.time1 }}</td>
+                            </tr>
+                            {% endfor %}
+                          
+                        </tbody>
+                    </table>
+                    <!-- --------------------------------------------------------------------- -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

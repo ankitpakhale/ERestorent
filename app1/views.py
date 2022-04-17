@@ -66,7 +66,6 @@ def palce_order(request,id):
         #cart = Orders.objects.create(user_name=user,meal_name=product.name,meal_qty=cart.meal_qty,qrimage=y)
         cart.save()
         print("QR Saved")
-            
         return redirect('order')
 
 def orders(request):
@@ -389,7 +388,6 @@ def Account_status(request):
 def edit(request,id):
     if 'email' in  request.session:
         table=TableBooking.objects.get(id=id)
-
         return render(request,'edit.html',{'table':table})
     else:
         return redirect('login_admin')
@@ -468,4 +466,3 @@ def historydta(request):
         return render(request,'history.html',{'mod':mod,'table':table})
     else:
         return redirect('login')
-

@@ -14,6 +14,8 @@ class Temp_Food(models.Model):
     meal_name = models.CharField(max_length=100)
     meal_qty = models.PositiveIntegerField(default=1)
     meal_price = models.PositiveIntegerField(default=1)
+    def __unicode__(self):
+        return self.meal_name
     
 class Orders(models.Model):
     user_name = models.ForeignKey(Site_User, on_delete=models.CASCADE)
@@ -21,8 +23,6 @@ class Orders(models.Model):
     meal_qty = models.PositiveIntegerField(default=1)
     meal_price = models.PositiveIntegerField(default=0)
     qrimage = models.ImageField(upload_to='qrimage',blank=True,null=True)
-
-    
     def __unicode__(self):
         return self.user_name
     

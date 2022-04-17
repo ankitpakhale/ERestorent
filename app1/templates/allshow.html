@@ -1,34 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
 
-
-<a href="/account_status/">Account_status</a>
-<div class="container">
-    <br><br><br><br><br>
-    <div class="card text-white bg-info">
-        <div class="card-header">
-            List of USERS
+{% block content %}
+<div class="hero-wrap" style="background-image: url({% static 'images/menu-5.jpg' %});">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
+      <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+        <div class="text">
+          <h1 class="mb-4 bread">List of USERS</h1>
         </div>
-        <div class="card-body text-white">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Table_no</th>
-                        <th>Customer email</th>
-                        <th>Date</th>
-                        <th>Time</th>
+      </div>
+    </div>
+  </div>
+</div>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for i in all %}
-                    <tr>
-                        <td>{{i.table_no}}</td>
+<section class="ftco-section">
+  <div class="container">
+    <!-- --------------------------------------------------------------------- -->
+    <div class="row d-flex">
+      <div class="col-md-12">
+        <div class="card-body">
+          <!-- --------------------------------------------------------------------- -->
+
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Table_no</th>
+                <th scope="col">Customer_email</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in all %}
+              <tr>
+                <td scope="row">{{i.table_no}}</td>
                         <td>{{i.usereamil}}</td>
                         <td>{{i.date}}</td>
                         <td>{{i.time1}}</td>
-                    </tr>
-                    {%endfor%}
-                </tbody>
-            </table>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <!-- --------------------------------------------------------------------- -->
         </div>
+        <div class="card-body">
+          <div class="col-md-12 room-single ftco-animate mb-5 mt-5">
+            <a href="/account_status/" class="btn btn-primary">Account Status</a>
+          </div>
+        </div>
+      
+      </div>
     </div>
-</div>
+  </div>
+</section>
+
+{% endblock %}

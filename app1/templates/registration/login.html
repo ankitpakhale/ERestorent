@@ -16,7 +16,7 @@
 	<div class="signupBox">
 		<!-- <img src="{% static 'images/user1.png' %}" class="user"> -->
 		<img src="{% static 'images/user1.png' %}" class="user">
-		<h2>Login Here</h2>
+		<h2>User Login</h2>
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 
@@ -28,6 +28,9 @@
 		</form>
 
 		<a href="{% url 'register' %}">Create new Account</a>
+		<br>
+		<br>
+		<a href="{% url 'login_admin' %}">Chief Login</a>
 
 	</div>
     <!-- PRINTING BACKEND MESSAGES -->
