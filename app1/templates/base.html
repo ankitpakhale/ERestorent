@@ -32,34 +32,53 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-
+   
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-        
         <img src="{% static 'images/instragram/favicon.png' %}" alt="">
 	      <a class="navbar-brand" href="{% url 'index' %}" img src="{% static 'images/instagram/favicon.png' %}" alt=""> E-Restaurant</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
+          <span class="oi oi-menu"></span> Menu
 	      </button>
-
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
             <li class="nav-item active"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
 	          <li class="nav-item"><a href="{% url 'alltable' %}" class="nav-link">Table Booking</a></li>
             <li class="nav-item active"><a href="{% url 'historydta' %}" class="nav-link">History </a></li>
-
 	          <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
             <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
             <li class="nav-item"><a href="{% url 'order' %}" class="nav-link">Orders</a></li>
             <li class="nav-item"><a href="{% url 'meal' 'vage' %}" class="nav-link">Veg Food</a></li>
             <li class="nav-item"><a href="{% url 'meal' 'nonvage' %}" class="nav-link">Non Veg Food</a></li>
             <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
-
+            
 	        </ul>
 	      </div>
 	    </div>
-	  </nav>
+	  </nav> -->
+    <!-- -------------------------New Nav Bar-------------------------- -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <img src="{% static 'images/instragram/favicon.png' %}" alt="">
+      <a class="navbar-brand" href="{% url 'index' %}" img src="{% static 'images/instagram/favicon.png' %}" alt=""> E-Restaurant</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="{% url 'index' %}">Home</a>
+          <a class="nav-item nav-link" href="{% url 'alltable' %}">Table Booking</a>
+          <a class="nav-item nav-link" href="{% url 'historydta' %}">History</a>
+          <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
+          <a class="nav-item nav-link" href="{% url 'contact' %}">Contact</a>
+          <a class="nav-item nav-link" href="{% url 'order' %}">Order</a>
+          <a class="nav-item nav-link" href="{% url 'meal' 'vage' %}">Veg Food</a>
+          <a class="nav-item nav-link" href="{% url 'meal' 'nonvage' %}">Non Veg Food</a>
+          <a class="nav-item nav-link" href="{% url 'meal' 'logout' %}">Logout</a>
+        </div>
+      </div>
+    </nav>
     <!-- END nav -->
+    
 
     {% block content %}
     {% endblock %}
