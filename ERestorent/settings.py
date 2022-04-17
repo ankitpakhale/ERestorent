@@ -18,12 +18,10 @@ DEBUG = False
 ALLOWED_HOSTS = ['erestorent.herokuapp.com']
 # ALLOWED_HOSTS = []
 
-
 REPORT_BUILDER_INCLUDE = []
 REPORT_BUILDER_EXCLUDE = ['app1.Orders']
 report_builder_exclude_fields = []
 REPORT_BUILDER_GLOBAL_EXPORT = True
-
 
 # Application definition
 

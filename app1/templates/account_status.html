@@ -1,36 +1,55 @@
-<div class="container">
-    <br><br><br><br><br>
-    <div class="card bg-info text-white">
-        <div class="card-header text-white">
-            Account list for verification
-        </div>
-        <div class="card-body">
-            <table class="table table-bordered text-white">
-                <thead>
-                    <tr>
+{% extends 'base.html' %}
+{% load static %}
 
-                        <th>Usereamil</th>
-                        <th>Table_no</th>
-                        <th>Date</th>
-                        <th>time</th>
-                        <th>Booking Status</th>
-                        
-                        <th>View</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for i in z%}
-                    <tr>
+{% block content %}
+<div class="hero-wrap" style="background-image: url({% static 'images/menu-5.jpg' %});">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
+            <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+                <div class="text">
 
-                        <td>{{i.usereamil}}</td>
-                        <td>{{i.table_no}}</td>
-                        <td>{{i.date}}</td>
-                        <td>{{i.time1}}</td>
-                        <td>{{i.booked}}</td>
-                        <td><a href="{% url 'edit' i.id %}"><button type="button"
-                                    class="btn btn-warning">Info</button></a></td>
-                    </tr>
-                    {%endfor%}
-                </tbody>
-            </table>
+                    <h1 class="mb-4 bread">Account list for verification</h1>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
+
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row d-flex">
+
+            <div class="col-md-12 d-flex align-self-stretch ftco-animate">
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Usereamil</th>
+                            <th scope="col">Table_no</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">time</th>
+                            <th scope="col">Booking Status</th>
+                            <th scope="col">Information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in z %}
+                        <tr>
+                            <th scope="row">{{i.usereamil}}</th>
+                            <td>{{i.table_no}}</td>
+                            <td>{{i.date}}</td>
+                            <td>{{i.time1}}</td>
+                            <td>{{i.booked}}</td>
+                            <td><a href="{% url 'edit' i.id %}"><button type="button"
+                                        class="btn btn-warning">Info</button></a></td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,50 +1,69 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<title>orders</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="{% static 'table.css' %}">
-<body>
-    {% if data %}
 
-<div class="w3-container">
-  <h2> Your Orders {{ User }}</h2>
-  {% for d in data %}
-  <ul class="w3-ul w3-card-4">
-    <li class="w3-bar">
-      <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right"><a href="{% url 'cart_remove' d.id %}">×</a></span>
-     
-      <div class="w3-bar-item">
-        <span class="w3-large">{{d.meal_name}}</span><br>
-        <span> of Quantity : {{d.meal_qty}}</span><br>
-        <span> at Price :{{d.meal_price}}</span>
-        
+{% block content %}
+<div class="hero-wrap" style="background-image: url({% static 'images/menu-5.jpg' %});">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
+      <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+        <div class="text">
+
+          <h1 class="mb-4 bread">List of Users</h1>
+        </div>
       </div>
-    </li>
-  </ul>
-  {% endfor %}
-</div>
-
-<center>
-<br>
-<div>
-    Your Payable Bill = {{ total }}
-</div>
-
-<td>
-    <div class="col-md-12 room-single ftco-animate mb-5 mt-5">
-        <h4 class="mb-4">
-          <a href="{% url 'emailcall' %}">Order Now</a>
     </div>
-</td>
-</center>
+  </div>
+</div>
+
+{% if data %}
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row d-flex">
+
+      <div class="col-md-12 d-flex align-self-stretch ftco-animate">
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Meal Name</th>
+              <th scope="col">Meal Quantity</th>
+              <th scope="col">Meal Price</th>
+              <th scope="col">Cancle</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for d in data %}
+            <tr>
+              <th scope="row">{{d.meal_name}}</th>
+              <td>{{d.meal_qty}}</td>
+              <td>{{d.meal_price}}</td>
+              <td> <span onclick="this.parentElement.style.display='none'"
+                  class="w3-bar-item w3-button w3-white w3-xlarge w3-right"><a
+                    href="{% url 'cart_remove' d.id %}">×</a></span>
+              </td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-12 d-flex align-self-stretch ftco-animate">
+        <div class="col-md-12 room-single ftco-animate mb-5 mt-5">
+          <h4 class="mb-4">
+            <a href="{% url 'emailcall' %}" class="btn btn-primary">Order Now</a>
+        </div>
+      </div>
+      <div class="col-md-12 d-flex align-self-stretch ftco-animate">
+        <h3> Your Payable Bill = {{ total }}</h3>
+      </div>
+    </div>
+    <a href="/account_status/" class="btn btn-primary">Account_status</a>
+  </div>
+</section>
 
 {% else %}
-    <h1> Please Place Order </h1>
+<h1> Please Place Order </h1>
 {% endif %}
-<br>
-<a href="{% url 'index' %}">Add New Items</a>
-<br>
 
-</body>
-</html>
+{% endblock %}
