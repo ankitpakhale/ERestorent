@@ -1,11 +1,14 @@
 body{
-    margin: 0;
-    padding: 0;
-    background: url("../images/HOME03.jpg");
-    background-size: cover;
-    font-family: sans-serif;
-  }
+  margin: 0;
+  padding: 0;
+  background: url("../images/HOME03.jpg");
+  background-size: cover;
+  font-family: sans-serif;
   
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
   .signupBox{
     position: absolute;
     top: 58%;

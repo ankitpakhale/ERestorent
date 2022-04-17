@@ -1,30 +1,39 @@
 {% load static %}
-
+<!DOCTYPE html>
 <html>
+
 <head>
 	<title>Login Page</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'css/login_style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
 </head>
+
 <body>
-	<br>	
-		<div style="font-size: 40px; color:brown">
-				<center>
-				<h1>Welcome To E-Restorent</h1>
-			</center>
-			</div>
-	<div class="loginBox">
+	<div style="font-size: 40px; color:brown">
+		<center>
+			<h1>Welcome To E-Restorent</h1>
+		</center>
+	</div>
+	<div class="signupBox">
+		<!-- <img src="{% static 'images/user1.png' %}" class="user"> -->
 		<img src="{% static 'images/user1.png' %}" class="user">
 		<h2>Login Here</h2>
 		<form method="POST" enctype="multipart/form-data">
-      	{% csrf_token %}
-			<p>Username</p>
-			<input type="email" name="email">
-			<p>Password</p>
-			<input type="password" name="password">
-			<input type="submit" value="Sign In">
-			<a href="{% url 'register' %}"><p style="text-align: center">Create New Account</p></a><br>
-			<a href="{% url 'verify' %}"><p style="text-align: center">Forget Password</p></a><br>
+			{% csrf_token %}
+
+			<input type="email" name="email" id="email" class="form-control" placeholder="Email address" required>
+
+			<input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+
+			<input type="submit" value="Login">
 		</form>
+
+		<a href="{% url 'register' %}">Create new Account</a>
+
 	</div>
+    <!-- PRINTING BACKEND MESSAGES -->
+        {% if msg %}
+        <script>alert('{{msg}}')</script>
+        {% endif %}
 </body>
+
 </html>
