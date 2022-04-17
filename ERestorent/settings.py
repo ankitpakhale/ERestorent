@@ -13,14 +13,11 @@ SECRET_KEY = '^=blt$yi4a4@kkl6$tg9*eqgo#8tz97qd14pog46x@f^#cxzfq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+# DEBUG = True
 
-<<<<<<< HEAD
-
-# ALLOWED_HOSTS = ['erestorent.herokuapp.com']
-ALLOWED_HOSTS = []
-=======
 ALLOWED_HOSTS = ['erestorent.herokuapp.com']
->>>>>>> 21f01c80edc724cb12665fb7cc867227de39758b
+# ALLOWED_HOSTS = []
+
 
 REPORT_BUILDER_INCLUDE = []
 REPORT_BUILDER_EXCLUDE = ['app1.Orders']
@@ -43,7 +40,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
