@@ -370,7 +370,6 @@ def show_all(request):
         data=TableDetail.objects.all()
         return render(request,'alltable.html',{'data':data})
 
-
 def alltablebook(request):
     if 'email' in  request.session:   
         all=TableBooking.objects.all()
@@ -384,11 +383,10 @@ def Account_status(request):
         return render(request, 'account_status.html', {'z': z})
     else:
         return redirect('login_admin')
-        
+
 def edit(request,id):
     if 'email' in  request.session:
         table=TableBooking.objects.get(id=id)
-
         return render(request,'edit.html',{'table':table})
     else:
         return redirect('login_admin')
@@ -413,7 +411,6 @@ def Approve_acc(request, id):
             # mail.login(emailid,password)
             # mail.sendmail(emailid,z.usereamil.email,msg)
             # mail.close()
-
             return redirect('/allshow/')
         return render(request, 'edit.html')
     else:
