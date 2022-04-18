@@ -381,7 +381,6 @@ def alltablebook(request):
 def Account_status(request):
     if 'email' in  request.session:
         z = TableBooking.objects.all().filter(booked=False)
-        print(z)
         return render(request, 'account_status.html', {'z': z})
     else:
         return redirect('login_admin')
