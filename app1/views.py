@@ -395,23 +395,45 @@ def Approve_acc(request, id):
     if 'email' in  request.session:
         z = TableBooking.objects.get(id=id)
         if request.method=='POST':
-            z.booked=request.POST['booked']
-            z.save()
-            model=TableDetail.objects.get(Table_No=request.session['table_no'])
-            model.is_available=False
-            model.save()
-            emailid=""
-            password=""
-            subject ="Response after reservation Approved !!"
-            body = ("hello, {} your request for booking the table will be approved.\n Tahnks for using E-restaurant.".format(z.usereamil.name))
-            msg = ("Subject : {} \n\n {}".format(subject,body))
-            # mail=smtplib.SMTP('smtp.gmail.com',587)
-            # mail.ehlo()
-            # mail.starttls()
-            # mail.login(emailid,password)
-            # mail.sendmail(emailid,z.usereamil.email,msg)
-            # mail.close()
-            return redirect('/allshow/')
+            
+            try:
+                z.booked=request.POST['booked']
+                print(z.booked)
+                print("000")
+                z.save()
+                print("111")
+                model=TableDetail.objects.get(Table_No=request.session['table_no'])
+                print("222")
+                model.is_available=False
+                print("333")
+                model.save()
+                print("444")
+                emailid=""
+                print("555")
+                password=""
+                print("666")
+                subject ="Response after reservation Approved !!"
+                print("777")
+                body = ("hello, {} your request for booking the table will be approved.\n Tahnks for using E-restaurant.".format(z.usereamil.name))
+                print("888")
+                msg = ("Subject : {} \n\n {}".format(subject,body))
+                print("999")
+                mail=smtplib.SMTP('smtp.gmail.com',587)
+                print("----")
+                mail.ehlo()
+                print("*****")
+                mail.starttls()
+                print("//////")
+                mail.login(emailid,password)
+                print("+-*//")
+                mail.sendmail(emailid,z.usereamil.email,msg)
+                print("5791")
+                mail.close()
+                print("4785")
+                return redirect('/allshow/')
+            except:
+                return render(request, 'edit.html', {'msg': 'Something Went Wrong'})
+           
         return render(request, 'edit.html')
     else:
         return redirect('/login_admin/')

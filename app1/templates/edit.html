@@ -2,65 +2,48 @@
 {% load static %}
 
 {% block content %}
-<section class="home-slider owl-carousel">
-    <div class="slider-item" style="background-image:url({% static 'images/bg_1.jpg' %});">
-        <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-        <div class="col-md-12 ftco-animate text-center">
-            <div class="text mb-5 pb-3">
-              <h1 class="mb-3">Welcome To Deluxe</h1>
-              <h2>Hotels</h2>
-          </div>
+<div class="hero-wrap" style="background-image: url({% static 'images/menu-1.jpg' %});">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
+      <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+        <div class="text">
+          <h1 class="mb-4 bread">BOOKING TABLE</h1>
         </div>
       </div>
-      </div>
-    </div>
-
-    <div class="slider-item" style="background-image:url({% static 'images/bg_2.jpg' %});">
-        <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-        <div class="col-md-12 ftco-animate text-center">
-            <div class="text mb-5 pb-3">
-              <h1 class="mb-3">Enjoy A Luxury Experience</h1>
-              <h2>Join With Us</h2>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
-</section><br>
-<center><h2 style="font-weight:bold;">BOOKING TABLE </h2></center><hr>
-<form method="POST" action="/approve/{{ table.id }}/">
-  {% csrf_token %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h3 style="margin-top: 30px;">Order_By : {{ table.usereamil }}</h3>
-      <h3 style="margin-top: 30px;">Table No: {{table.table_no}}</h3>
-    </div>
-    <div class="col-md-6">
-      
-      <h3 style="margin-top: 30px;">Booking Date:{{ table.date }}
-      </h3>
-      <h3 style="margin-top: 30px;">Booking Time:{{ table.time1 }}
-      </h3>
-      <h3>Booked:
-      <input type="text" name="booked" id="booked" value="{{ table.booked }}"></h3>
     </div>
   </div>
 </div>
-<center>
-  <button style="margin-top: 30px;" type="submit" class="btn btn-primary">Book Now</button>
-</center>
-</form>
 
-  <section class="ftco-section contact-section bg-light">
-    <div class="row block-9">
-        <div class="col-md-6 order-md-last d-flex">
-
-        </div>
+<section class="ftco-section">
+  <div class="container">
+    <div class="row d-flex">
+      <!-- --------Left --------- -->
+      <div class="col-md-6">
+        <p class="h4">Order By : {{ table.usereamil }}</p>
+        <p class="h4">Table No: {{ table.table_no }}</p>
+      </div>
+      <!-- --------Right --------- -->
+      <div class="col-md-6">
+        <p class="h4">Booking Date: {{ table.date }}</p>
+        <p class="h4">Booking Time: {{ table.time1 }}</p>
+        <form method="POST" action="/approve/{{ table.id }}/">
+          {% csrf_token %}
+          <select name="booked" class="form-select mb-3">
+            <option selected disabled>Booking Status</option>
+            <option name="true" value="True">Approve</option>
+            <option name="false" value="False">Reject</option>
+          </select>
+          <input type="submit" class="btn btn-primary" value="Book Now">
+        </form>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+{% if msg %}
+<script>alert('{{msg}}')</script>
+{% endif %}
 {% endblock %}
+
+
+
