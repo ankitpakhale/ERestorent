@@ -9,7 +9,7 @@ from django.views import generic
 from ERestorent.settings import BASE_DIR
 import os
 from app1.forms import Site_User_Form,Form_Login,Form_Site_User
-from app1.models import Orders,Site_User,Temp_Food
+from app1.models import Orders,Site_User,Temp_Food, PermanentOrders
 from django.urls import reverse_lazy
 #from Pay import Checksum
 from django.urls import reverse
@@ -257,6 +257,8 @@ def change_pass(request):
 def EmailCall(request):
     user = Site_User.objects.get(email=request.session['user'])
     show_data = Orders.objects.all().filter(user_name=user)
+   
+    
     amo = request.session['Order_total']
     print(amo)
     
@@ -315,6 +317,18 @@ def EmailCall(request):
         </body>
     </html>
     """
+    
+    for i in show_data:
+        print("Saving order data on database")
+        PermanentOrders.objects.create(
+            user_name=user, 
+            meal_name= i.meal_name, 
+            meal_qty= i.meal_qty, 
+            meal_price= i.meal_price
+    )
+    
+    print("Saved order data Successfully")
+     
     email_content = front + mead_data + ended
     print(email_content)
     
@@ -450,13 +464,11 @@ def login_admin(request):
                 request.session['email'] = email
                 print("loged")
                 request.session['email'] = email
-                return redirect('/allshow/')
+                return redirect('allshow')
             else:
-                messages.error(request, "Wrong Password")
-                return redirect('/login_admin/')
+                return render(request, 'login_admin.html' , {'msg': 'Wrong Password'})
         except:
-            messages.error(request, "Wrong Email Address")
-            return redirect('/login_admin/')
+            return render(request, 'login_admin.html' , {'msg': 'Wrong Email Address'})
     return render(request, 'login_admin.html')
 
 def signup_admin(request):

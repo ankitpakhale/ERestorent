@@ -6,8 +6,9 @@ class Site_User_Admin(admin.ModelAdmin):
 
 class Orders_Admin(admin.ModelAdmin):
     list_display = ['name']
-    
+
 admin.site.register(models.Orders)
+admin.site.register(models.PermanentOrders)
 #admin.site.register(models.Temp_Food)
 admin.site.register(models.Site_User,Site_User_Admin)
 

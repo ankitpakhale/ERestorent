@@ -58,12 +58,22 @@
         <h3> Your Payable Bill = {{ total }}</h3>
       </div>
     </div>
-    <a href="/account_status/" class="btn btn-primary">Account_status</a>
+    <!-- <a href="{% url 'Account_status' %" class="btn btn-primary">Account Status</a> -->
   </div>
 </section>
 
 {% else %}
-<h1> Please Place Order </h1>
+<div class="text-center m-5">
+  <h2 class="text-danger"> Please Place Order </h2>
+  <div class="d-flex justify-content-center mt-5">
+    <!-- <div class="col-md-3">
+      <a href="{% url 'meal''vage' %" class="btn btn-primary">Order Veg Food</a>
+    </div>
+    <div class="col-md-3">
+      <a href="{% url 'meal''nonvage' %" class="btn btn-primary">Order Non Veg Food</a>
+    </div> -->
+  </div>
+</div>
 {% endif %}
 
 {% endblock %}
