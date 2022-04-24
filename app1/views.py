@@ -279,80 +279,80 @@ def EmailCall(request):
             meal_qty= i.meal_qty, 
             meal_price= i.meal_price
     )
-
-    # --------------------------SMTP Start--------------------------
-    my_email = "mailtesting681@gmail.com"
-    my_pass = "mailtest123@"
-    fr_email = user.email     
-    server = smtplib.SMTP('smtp.gmail.com',587)
-    mead_data = ""
-    front = """
-    <!DOCTYPE html>
-    <html>
-        <body>
-            <div>
-                <h2>Name : """ + user.name + """</h2>
-                <h2>Email : """ + user.email + """</h2>
-            </div>
-            <br>
-            <div>
-                <table border="2">
-                    <thead>
-                        <tr>
-                            <th>
-                                Product Name
-                            </th>
-                            <th>
-                                Product Qty
-                            </th>
-                            <th>
-                                Product Price
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>"""
-                    
-    for i in show_data:
-        mead_data += """<tr>
-        <td>""" + str(i.meal_name) + """ </td>
-        <td>""" + str(i.meal_qty) + """ </td> 
-        <td>""" + str(i.meal_price) + """</td></td>
-        </tr> """
-        
-    ended = """<tr>
-    <td colspan="2">
-    You Have Paid
-    </td><td> """ + str(amo) + """
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> 
-            <br>
-            <div>
-                <h3>Thank you for visiting ....</h3>
-            </div>
-        </body>
-    </html>
-    """
-    
-    email_content = front + mead_data + ended
-    print(email_content)
-    
-    msg = email.message.Message()
-    msg['Subject'] = 'Your Bill' 
-    msg['From'] = my_email
-    msg['To'] = fr_email
-    password = my_pass
-    msg.add_header('Content-Type', 'text/html')
-    msg.set_payload(email_content)
-    s = smtplib.SMTP('smtp.gmail.com',587)
-    s.starttls()
-    s.login('mailtesting681@gmail.com','mailtest123@')
-    s.sendmail(msg['From'], [msg['To']], msg.as_string())
-    show_data.delete()
-    print("963")
     return(redirect('PAYMENT'))
+    # --------------------------SMTP Start--------------------------
+    # my_email = "mailtesting681@gmail.com"
+    # my_pass = "mailtest123@"
+    # fr_email = user.email     
+    # server = smtplib.SMTP('smtp.gmail.com',587)
+    # mead_data = ""
+    # front = """
+    # <!DOCTYPE html>
+    # <html>
+    #     <body>
+    #         <div>
+    #             <h2>Name : """ + user.name + """</h2>
+    #             <h2>Email : """ + user.email + """</h2>
+    #         </div>
+    #         <br>
+    #         <div>
+    #             <table border="2">
+    #                 <thead>
+    #                     <tr>
+    #                         <th>
+    #                             Product Name
+    #                         </th>
+    #                         <th>
+    #                             Product Qty
+    #                         </th>
+    #                         <th>
+    #                             Product Price
+    #                         </th>
+    #                     </tr>
+    #                 </thead>
+    #                 <tbody>"""
+                    
+    # for i in show_data:
+    #     mead_data += """<tr>
+    #     <td>""" + str(i.meal_name) + """ </td>
+    #     <td>""" + str(i.meal_qty) + """ </td> 
+    #     <td>""" + str(i.meal_price) + """</td></td>
+    #     </tr> """
+        
+    # ended = """<tr>
+    # <td colspan="2">
+    # You Have Paid
+    # </td><td> """ + str(amo) + """
+    #                         </td>
+    #                     </tr>
+    #                 </tbody>
+    #             </table>
+    #         </div> 
+    #         <br>
+    #         <div>
+    #             <h3>Thank you for visiting ....</h3>
+    #         </div>
+    #     </body>
+    # </html>
+    # """
+    
+    # email_content = front + mead_data + ended
+    # print(email_content)
+    
+    # msg = email.message.Message()
+    # msg['Subject'] = 'Your Bill' 
+    # msg['From'] = my_email
+    # msg['To'] = fr_email
+    # password = my_pass
+    # msg.add_header('Content-Type', 'text/html')
+    # msg.set_payload(email_content)
+    # s = smtplib.SMTP('smtp.gmail.com',587)
+    # s.starttls()
+    # s.login('mailtesting681@gmail.com','mailtest123@')
+    # s.sendmail(msg['From'], [msg['To']], msg.as_string())
+    # show_data.delete()
+    # print("963")
+    # return(redirect('PAYMENT'))
     
 def payment(request):
         mainMsg = "Thanks for choosing our services"
