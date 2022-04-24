@@ -438,9 +438,9 @@ def Approve_acc(request, id):
                 print("333")
                 model.save()
                 print("444")
-                emailid=""
+                emailid="mailtesting681@gmail.com"
                 print("555")
-                password=""
+                password="mailtest123@"
                 print("666")
                 subject ="Response after reservation Approved !!"
                 print("777")
