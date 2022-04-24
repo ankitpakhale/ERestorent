@@ -6,7 +6,7 @@ from pyqrcode import QRCode
   
   
 # String which represents the QR code
-s = "https://erestorent.herokuapp.com/alltable/"
+s = "http://restaurants-e.herokuapp.com/alltable/"
   
 # Generate QR code
 url = pyqrcode.create(s)
