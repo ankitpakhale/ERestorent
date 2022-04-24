@@ -74,8 +74,56 @@ def orders(request):
         show_data = Orders.objects.all().filter(user_name=user)
         for i in show_data:
             tot += i.meal_price
+        razorpay_amount=tot*100
         request.session['Order_total']=tot
-        return render(request,'orders.html',{'data':show_data,'total':tot,'User':user.name})
+    # ---------------------------------------------------------
+        # amount = request.session['Order_total']
+        if request.method == "POST":
+            client = razorpay.Client(
+            auth=("rzp_test_qDwTmKnksUVsaC", "QOr66ZQbsLdNZOmrV4YGX50V"))
+            payment = client.order.create({'amount': razorpay_amount, 'currency': 'INR',
+                                    'payment_capture': '1'})
+            # ----------------------------------------------------
+            client.order.create({
+            'amount': tot*100,
+            'currency': 'INR',
+            'payment_capture': '1'
+            })
+            # ----------------------------------------------------
+            for i in show_data:
+                print("Saving order data on database")
+                PermanentOrders.objects.create(
+                    user_name=user, 
+                    meal_name= i.meal_name, 
+                    meal_qty= i.meal_qty, 
+                    meal_price= i.meal_price
+            )
+            # ----------------------------------------------------
+            show_data.delete()
+            return(redirect('PAYMENT'))
+        # # --------------------------Razorpay End--------------------------
+        # payment1 = client.order.create({
+        #     'amount': amount*100,
+        #     'currency': 'INR',
+        #     'payment_capture': '1'
+        # })     
+        # print("Payment Successfully Done", payment1)  
+    # --------------------------Saving Orders on Permanent orders--------------------------
+        # for i in show_data:
+        #     print("Saving order data on database")
+        #     PermanentOrders.objects.create(
+        #         user_name=user,
+        #         meal_name= i.meal_name, 
+        #         meal_qty= i.meal_qty, 
+        #         meal_price= i.meal_price
+        # )
+        # show_data.delete()
+        # print("Payment Successfully Done")  
+        # return(redirect('PAYMENT'))
+    # --------------------------SMTP Start--------------------------
+    
+        # ---------------------------------------------------------
+        return render(request,'orders.html',{'data':show_data,'total':tot,'razor':razorpay_amount,'User':user.name})
     else:
         return redirect('login')
     
@@ -250,19 +298,27 @@ def change_pass(request):
         return redirect('login')
 
 def EmailCall(request):
+    print("----------------------Inside Email Call----------------------")
     user = Site_User.objects.get(email=request.session['user'])
     show_data = Orders.objects.all().filter(user_name=user)
-    amo = request.session['Order_total']
-    print(amo)
- 
-    # --------------------------SMTP Start--------------------------
-
-    client = razorpay.Client(auth=(
-                "rzp_test_qDwTmKnksUVsaC", 
-                "QOr66ZQbsLdNZOmrV4YGX50V"
-            ))
     amount = request.session['Order_total']
-    
+ 
+    # --------------------------Razorpay Start--------------------------
+
+    if request.method == "POST":
+            client = razorpay.Client(
+                auth=("rzp_test_qDwTmKnksUVsaC", "QOr66ZQbsLdNZOmrV4YGX50V"))
+
+            payment = client.order.create({'amount': amount, 'currency': 'INR',
+                                        'payment_capture': '1'})
+            
+    # client = razorpay.Client(auth=(
+    #             "rzp_test_qDwTmKnksUVsaC", 
+    #             "QOr66ZQbsLdNZOmrV4YGX50V"
+    #         ))
+   
+    # --------------------------Razorpay End--------------------------
+
     payment = client.order.create({
         'amount': amount*100,
         'currency': 'INR',

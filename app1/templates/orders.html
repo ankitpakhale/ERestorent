@@ -51,7 +51,18 @@
       <div class="col-md-12 d-flex align-self-stretch ftco-animate">
         <div class="col-md-12 room-single ftco-animate mb-5 mt-5">
           <h4 class="mb-4">
-            <a href="{% url 'emailcall' %}" class="btn btn-primary">Order Now</a>
+            <!-- <a href="{% url 'emailcall' %}" class="btn btn-primary">Order Now</a> -->
+            <!-- ------------------------------------------ -->
+            <form class="btn btn-primary" method="POST">
+              {% csrf_token %}
+              <!-- RAZORPAY INTEGRATION HERE -->
+              <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_qDwTmKnksUVsaC"
+                data-amount="{{ razor }}" data-currency="INR" data-buttontext="Pay with Razorpay"
+                data-name="Professional Cipher" data-description="Django and Data Science"
+                data-image="https://example.com/your_logo.jpg" data-prefill.name="PC"
+                data-prefill.email="pc@studygyaan.com" data-theme.color="#F37254"></script>
+            </form>
+            <!-- ------------------------------------------ -->
         </div>
       </div>
       <div class="col-md-12 d-flex align-self-stretch ftco-animate">
@@ -64,7 +75,13 @@
 
 {% else %}
 <div class="text-center m-5">
-  <h2 class="text-danger"> Please Place Order </h2>
+  <h2 class="text-danger"> Your Cart is Empty </h2>
+  <h2 class="text-danger"> Please Place the Order </h2>
+  <h5>
+    <a href="{% url 'index' %}" class="btn btn-primary" style="font-size: 20px;">
+      Go to Home Page
+    </a>
+  </h5>
   <div class="d-flex justify-content-center mt-5">
     <!-- <div class="col-md-3">
       <a href="{% url 'meal''vage' %" class="btn btn-primary">Order Veg Food</a>
