@@ -72,20 +72,19 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link active" href="{% url 'index' %}">Home</a>
-          <a class="nav-item nav-link" href="{% url 'alltable' %}">Table Booking</a>
-          <a class="nav-item nav-link" href="{% url 'historydta' %}">History</a>
           <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
-          <a class="nav-item nav-link" href="{% url 'contact' %}">Contact</a>
-          <a class="nav-item nav-link" href="{% url 'order' %}">Order</a>
+          <a class="nav-item nav-link" href="{% url 'alltable' %}">Table Booking</a>
           <a class="nav-item nav-link" href="{% url 'meal' 'vage' %}">Veg Food</a>
           <a class="nav-item nav-link" href="{% url 'meal' 'nonvage' %}">Non Veg Food</a>
+          <a class="nav-item nav-link" href="{% url 'order' %}">Cart</a>
+          <a class="nav-item nav-link" href="{% url 'allOrders' %}">All Orders</a>
+          <a class="nav-item nav-link" href="{% url 'historydta' %}">History</a>
+          <a class="nav-item nav-link" href="{% url 'contact' %}">Contact</a>
           <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
         </div>
       </div>
     </nav>
     <!-- END nav -->
-    
-    
 
     {% block content %}
     {% endblock %}

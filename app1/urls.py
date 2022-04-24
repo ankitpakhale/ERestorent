@@ -28,5 +28,10 @@ urlpatterns = [
     path('signup_admin/', views.signup_admin, name='signup_admin'),
     path('logout_admin/', views.logout_admin, name="logout_admin"),
     path('alltable/',views.show_all,name='alltable'),
-    path('historydta/',views.historydta,name='historydta')
+    path('historydta/',views.historydta,name='historydta'),
+    
+    path('allorders/',views.allOrders,name='allOrders'),
+    path('pay/',views.payment,name='PAYMENT'),
+
+
 ]

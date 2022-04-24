@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <section>            
+        <!-- PRODUCT START -->
+        <div class="container mt-5 mb-5"> 
+            <div class="section-heading">                
+                    
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div  style="font-size: 115px; font-weight: 700; 
+                            font-family:'Open Sans', sans-serif; 
+                            color: #01B3E4; text-align: center">
+
+                                {% if mainHeading %}
+                                <h2>Thanks for choosing our services</h2>
+                                <h3 class="text-success">Payment SuccessFully Done</h3>
+                                <h5>
+                                    <a href="{% url 'index' %}" class="nav-item nav-link" style="padding: 23px 3px; font-size: 20px;">
+                                        Go to Home Page
+                                    </a>
+                                </h5>
+                                {% else %}
+                                <h3 class="text-success">Payment Failed</h3>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div> 
+<!-- PRODUCT END -->
+</section>
+<!-- CONTENT END -->
+
+{% endblock %}

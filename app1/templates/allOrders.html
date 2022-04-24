@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="hero-wrap" style="background-image: url({% static 'images/menu-5.jpg' %});">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
+      <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
+        <div class="text">
+
+          <h1 class="mb-4 bread">All Orders</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% if allOrders %}
+<section class="ftco-section">
+  <div class="container">
+    <div class="row d-flex">
+
+      <div class="col-md-12 d-flex align-self-stretch ftco-animate">
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Meal Name</th>
+              <th scope="col">Meal Quantity</th>
+              <th scope="col">Meal Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for d in allOrders %}
+            <tr>
+              <th scope="row">{{d.meal_name}}</th>
+              <td>{{d.meal_qty}}</td>
+              <td>{{d.meal_price}}</td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+{% else %}
+<div class="text-center m-5">
+  <h2 class="text-danger">You haven't Booked any Order</h2>
+</div>
+
+{% endif %}
+
+
+
+{% if msg %}
+<script>alert('{{msg}}')</script>
+{% endif %}
+
+{% endblock %}

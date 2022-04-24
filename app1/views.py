@@ -24,6 +24,7 @@ import email.message
 #time
 import time
 from datetime import datetime, timezone
+import razorpay
 
 
 
@@ -207,7 +208,8 @@ def LoginView(request):
                 request.session['user'] = email
                 return redirect('index')
         except:
-             return redirect('login')
+            msg = f'{email} does not exist'
+            return render(request , 'registration/login.html',{'msg':msg})
     return render(request,'registration/login.html')
     
 def LogoutView(request):
@@ -221,7 +223,6 @@ def verify(request):
     if request.POST:
         em = request.POST['email']
         m_no = int(request.POST['m_no'])
-
         try:
             valid = Site_User.objects.get(email=em)
             if valid.m_no == m_no:
@@ -231,7 +232,6 @@ def verify(request):
                 messages.add_message(request,messages.ERROR,"Number Not Exist")
         except:
             messages.add_message(request,messages.ERROR,"Email Not Exist")
-
     return render(request,'verify.html')
 
 def change_pass(request):
@@ -239,7 +239,6 @@ def change_pass(request):
         if request.POST:
             p1 = request.POST['pass1']
             p2 = request.POST['pass2']
-
             if p1 == p2:
                 obj = Site_User.objects.get(email=request.session['new'])
                 obj.password = p2
@@ -253,19 +252,41 @@ def change_pass(request):
     else:
         return redirect('login')
 
-
 def EmailCall(request):
     user = Site_User.objects.get(email=request.session['user'])
     show_data = Orders.objects.all().filter(user_name=user)
-   
     
     amo = request.session['Order_total']
     print(amo)
+ 
+    # --------------------------SMTP Start--------------------------
+
+    client = razorpay.Client(auth=(
+                "rzp_test_qDwTmKnksUVsaC", 
+                "QOr66ZQbsLdNZOmrV4YGX50V"
+            ))
+    amount = request.session['Order_total']
     
+    payment = client.order.create({
+        'amount': amount*100,
+        'currency': 'INR',
+        'payment_capture': '1'
+    })       
+    
+    # --------------------------Saving Orders on Permanent orders--------------------------
+    for i in show_data:
+        print("Saving order data on database")
+        PermanentOrders.objects.create(
+            user_name=user, 
+            meal_name= i.meal_name, 
+            meal_qty= i.meal_qty, 
+            meal_price= i.meal_price
+    )
+
+    # --------------------------SMTP Start--------------------------
     my_email = "mailtesting681@gmail.com"
     my_pass = "mailtest123@"
-    fr_email = user.email
-    
+    fr_email = user.email     
     server = smtplib.SMTP('smtp.gmail.com',587)
     mead_data = ""
     front = """
@@ -318,17 +339,6 @@ def EmailCall(request):
     </html>
     """
     
-    for i in show_data:
-        print("Saving order data on database")
-        PermanentOrders.objects.create(
-            user_name=user, 
-            meal_name= i.meal_name, 
-            meal_qty= i.meal_qty, 
-            meal_price= i.meal_price
-    )
-    
-    print("Saved order data Successfully")
-     
     email_content = front + mead_data + ended
     print(email_content)
     
@@ -343,12 +353,18 @@ def EmailCall(request):
     s.starttls()
     s.login(msg['From'], password)
     s.sendmail(msg['From'], [msg['To']], msg.as_string())
-
     show_data.delete()
-        
-    return redirect('index')
-            
-        # ================== email end ================
+    print("963")
+    return(redirect('PAYMENT'))
+    
+def payment(request):
+        mainMsg = "Thanks for choosing our services"
+        return(render(request,'paymentSuccessPage.html',{'mainHeading':mainMsg}))
+
+def allOrders(request):
+    user = Site_User.objects.get(email=request.session['user'])
+    allOrders = PermanentOrders.objects.filter(user_name=user)
+    return render(request, 'allOrders.html', {'allOrders': allOrders})    
 
 def tablebooking(request,Table_No):
     if 'user' in request.session:
