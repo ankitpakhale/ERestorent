@@ -16,7 +16,7 @@ DEBUG = False
 # DEBUG = True
 
 ALLOWED_HOSTS = ['erestorent.herokuapp.com']
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 REPORT_BUILDER_INCLUDE = []
 REPORT_BUILDER_EXCLUDE = ['app1.Orders']
