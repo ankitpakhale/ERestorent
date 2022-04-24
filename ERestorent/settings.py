@@ -23,8 +23,6 @@ REPORT_BUILDER_EXCLUDE = ['app1.Orders']
 report_builder_exclude_fields = []
 REPORT_BUILDER_GLOBAL_EXPORT = True
 
-# Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
