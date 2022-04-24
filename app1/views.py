@@ -26,8 +26,6 @@ import time
 from datetime import datetime, timezone
 import razorpay
 
-
-
 def index(request):
     if 'user' in request.session:
         form11 = Meal.objects.all()
@@ -38,7 +36,6 @@ def index(request):
     else:
         return redirect('login')
 
-    
 def palce_order(request,id):
     cart = Orders()
     user = Site_User.objects.get(email=request.session['user'])
@@ -255,7 +252,6 @@ def change_pass(request):
 def EmailCall(request):
     user = Site_User.objects.get(email=request.session['user'])
     show_data = Orders.objects.all().filter(user_name=user)
-    
     amo = request.session['Order_total']
     print(amo)
  
@@ -271,7 +267,8 @@ def EmailCall(request):
         'amount': amount*100,
         'currency': 'INR',
         'payment_capture': '1'
-    })       
+    })     
+    print("Payment Successfully Done", payment)  
     
     # --------------------------Saving Orders on Permanent orders--------------------------
     for i in show_data:
@@ -351,7 +348,7 @@ def EmailCall(request):
     msg.set_payload(email_content)
     s = smtplib.SMTP('smtp.gmail.com',587)
     s.starttls()
-    s.login(msg['From'], password)
+    s.login('mailtesting681@gmail.com','mailtest123@')
     s.sendmail(msg['From'], [msg['To']], msg.as_string())
     show_data.delete()
     print("963")
